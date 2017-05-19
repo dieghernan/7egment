@@ -3,7 +3,7 @@
 **7egment** is a customizable watchface based on the classic 7-segment display that adds your location and the current weather information in the language used on your watch and smartphone.
 
 To fix
-#### [Download from Pebble Appstore](https://apps.getpebble.com/applications/58c2f7110dfc32a52a00081f)
+#### [Download from Pebble Appstore](https://apps.getpebble.com/applications/591ead370dfc32aacf000204)
 
 # Features
 * Autodetection of 12h/24h based on your watch settings
