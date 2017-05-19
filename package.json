@@ -4,49 +4,48 @@
         "pebble-clay": "^1.0.3"
     },
     "keywords": [],
-    "name": "newwf",
+    "name": "7egment",
     "pebble": {
         "capabilities": [
             "location",
             "configurable"
         ],
-        "displayName": "NewWF",
+        "displayName": "7egment",
         "enableMultiJS": true,
         "messageKeys": [
-            "BackgroundColor",
-            "ForegroundColor",
-            "DotsColor",
-            "WeatherUnit",
-            "WeatherTemp",
-            "WeatherCond",
-            "NameLocation",
-            "DisplayDate",
-            "DisplayTemp",
-            "DisplayLoc",
-            "DisplayDots",
-            "DisplayBattery",
-            "BatteryColor",
-            "UpSlider",
             "NightTheme",
-            "BackgroundColorNight",
-            "ForegroundColorNight",
-            "DotsColorNight",
-            "BatteryColorNight",
-            "HourSunset",
-            "HourSunrise",
+            "WeatherUnit",
             "WeatherProv",
+            "APIKEY_User",
             "EmailPMKEY",
             "PINPMKEY",
-            "APIKEY_User",
-            "ClockMode",
-            "HourColor",
-            "MinColor",
-            "HourColorNight",
-            "MinColorNight"
+            "UpSlider",
+            "WeatherTemp",
+            "WeatherCond",
+            "HourSunset",
+            "HourSunrise",
+            "NameLocation",
+            "Back1Color",
+            "Back1ColorN",
+            "Back2Color",
+            "Back2ColorN",
+            "FrameColor",
+            "FrameColorN",
+            "Text1Color",
+            "Text1ColorN",
+            "Text2Color",
+            "Text2ColorN"
         ],
         "projectType": "native",
         "resources": {
             "media": [
+                {
+                    "file": "images/7egment.png",
+                    "menuIcon": true,
+                    "name": "7ement",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
                 {
                     "characterRegex": "[0-9 :]",
                     "file": "fonts/DSEG7Modern-Bold.ttf",
@@ -72,59 +71,6 @@
                     "name": "DIGITAL_70",
                     "targetPlatforms": null,
                     "type": "font"
-                },
-                {
-                    "file": "images/sfera.png",
-                    "menuIcon": true,
-                    "name": "sfera",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "fonts/weatherfontcustom2.ttf",
-                    "name": "FONT_WICON_22",
-                    "targetPlatforms": null,
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/Gotham Light.otf",
-                    "name": "FONT_GLIGHT_10",
-                    "targetPlatforms": null,
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/Gotham Light.otf",
-                    "name": "FONT_GLIGHT_14",
-                    "targetPlatforms": null,
-                    "type": "font"
-                },
-                {
-                    "characterRegex": "[0-9 a-z A-Z]",
-                    "file": "fonts/Gotham Light.otf",
-                    "name": "FONT_GLIGHT_12",
-                    "targetPlatforms": null,
-                    "type": "font"
-                },
-                {
-                    "characterRegex": "[0-9:]",
-                    "file": "fonts/Gotham Bold.otf",
-                    "name": "FONT_GBOLD_34",
-                    "targetPlatforms": null,
-                    "type": "font"
-                },
-                {
-                    "characterRegex": "[0-9:]",
-                    "file": "fonts/Gotham Bold.otf",
-                    "name": "FONT_GBOLD_22",
-                    "targetPlatforms": null,
-                    "type": "font"
-                },
-                {
-                    "characterRegex": "[a-b]",
-                    "file": "fonts/ConnSymbol.ttf",
-                    "name": "FONT_SYMBOL_16",
-                    "targetPlatforms": null,
-                    "type": "font"
                 }
             ]
         },
@@ -136,10 +82,10 @@
             "diorite",
             "emery"
         ],
-        "uuid": "c5683190-bec7-4ad7-950b-b5cdd3d12d2b",
+        "uuid": "afe652df-7ba6-4fa3-a8b1-1877b8f6bd6d",
         "watchapp": {
             "watchface": true
         }
     },
-    "version": "5.0.0"
+    "version": "1.0.0"
 }
