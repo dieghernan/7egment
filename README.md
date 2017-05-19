@@ -5,7 +5,7 @@ To fix
 
 # Features
 * Autodetection of 12h/24h based on your watch settings
-* nternationalization: Autotranslating of weekday supported for:
+* Internationalization: Autotranslating of weekday supported for:
   * English 
   * Spanish
   * German
@@ -13,7 +13,7 @@ To fix
   * Portuguese
   * Italian
 
-## Take your pick
+## Options
  * Choose background colors, frame and text
  * 3 Bands design. Make it match your tie!
  * Weather: Current conditions on °c or °f.
