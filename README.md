@@ -1,3 +1,5 @@
+![Banner](https://raw.githubusercontent.com/dieghernan/7egment/master/store/Banner.png)
+
 **7egment** is a customizable watchface based on the classic 7-segment display that adds your location and the current weather information in the language used on your watch and smartphone.
 
 To fix
