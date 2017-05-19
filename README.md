@@ -28,7 +28,9 @@ To fix
  * Night theme displayed between sunset and sunrise
  
 # Screenshots
-TBD
+![Banner](https://raw.githubusercontent.com/dieghernan/7egment/master/store/PC.gif)
+![Banner](https://raw.githubusercontent.com/dieghernan/7egment/master/store/PT.gif)
+![Banner](https://raw.githubusercontent.com/dieghernan/7egment/master/store/PTR.gif)
 
 # Attributions
 ## Fonts: 
