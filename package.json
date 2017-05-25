@@ -47,16 +47,8 @@
                     "type": "bitmap"
                 },
                 {
-                    "characterRegex": "[0-9 :]",
-                    "file": "fonts/DSEG7Modern-Bold.ttf",
-                    "name": "FONT_DIG_40",
-                    "targetPlatforms": null,
-                    "trackingAdjust": -2,
-                    "type": "font"
-                },
-                {
                     "file": "fonts/Digital7 Regular.ttf",
-                    "name": "DIGITAL_25",
+                    "name": "DIGITAL_70",
                     "targetPlatforms": null,
                     "type": "font"
                 },
@@ -68,8 +60,16 @@
                 },
                 {
                     "file": "fonts/Digital7 Regular.ttf",
-                    "name": "DIGITAL_70",
+                    "name": "DIGITAL_25",
                     "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[0-9 :]",
+                    "file": "fonts/DSEG7Modern-Bold.ttf",
+                    "name": "FONT_DIG_40",
+                    "targetPlatforms": null,
+                    "trackingAdjust": -2,
                     "type": "font"
                 }
             ]
@@ -87,5 +87,5 @@
             "watchface": true
         }
     },
-    "version": "1.0.0"
+    "version": "1.1.0"
 }

@@ -102,11 +102,11 @@ static void layer_update_proc(Layer * layer, GContext * ctx){
   strcat(datenow, convertday);
   //Battery
   int battery_level = battery_state_service_peek().charge_percent;
-  char battperc[4];
+  char battperc[20];
   snprintf(battperc, sizeof(battperc), "%d", battery_level);
   strcat(battperc, "%");
   // Draw AM PM 24H
-  char ampm[4];
+  char ampm[20];
   if (clock_is_24h_style()){
     snprintf(ampm, sizeof(ampm), "24H");
   }
