@@ -22,20 +22,19 @@ static void prv_default_settings(){
   settings.FrameColorN = GColorBlack;
   settings.Text1ColorN = GColorBlack;
   settings.Text2ColorN = GColorBlack; 
-  settings.WeatherUnit = false;
   settings.WeatherCond = 0;
   settings.UpSlider = 30;
-  settings.HourSunrise = 600;
-  settings.HourSunset = 1700;
-  settings.BTOn = true;
-  settings.GPSOn = false;
   settings.NightTheme = true;
-  settings.IsNightNow = false;
 }
+int HourSunrise=700;
+int HourSunset=2200;
+bool BTOn=true;
+bool GPSOn=true;
+bool IsNightNow=false;
 //////End Configuration///
 ///////////////////////////
 static GColor ColorSelect(GColor ColorDay, GColor ColorNight){
-  if (settings.NightTheme && settings.IsNightNow &&settings.GPSOn ){
+  if (settings.NightTheme && IsNightNow && GPSOn ){
     return ColorNight;
   } 
   else{
@@ -56,7 +55,7 @@ void request_watchjs(){
 }
 ///BT Connection
 static void bluetooth_callback(bool connected){
-  settings.BTOn = connected;
+  BTOn = connected;
 }
 static void onreconnection(bool before, bool now){
   if (!before && now){
@@ -94,7 +93,7 @@ static void layer_update_proc(Layer * layer, GContext * ctx){
   //Date
   // Local language
   const char * sys_locale = i18n_get_system_locale();
-  char datenow[44];
+  char datenow[10];
   fetchwday(s_weekday, sys_locale, datenow);
   char convertday[4];
   snprintf(convertday, sizeof(convertday), " %02d", s_day);
@@ -106,7 +105,7 @@ static void layer_update_proc(Layer * layer, GContext * ctx){
   snprintf(battperc, sizeof(battperc), "%d", battery_level);
   strcat(battperc, "%");
   // Draw AM PM 24H
-  char ampm[20];
+  char ampm[3];
   if (clock_is_24h_style()){
     snprintf(ampm, sizeof(ampm), "24H");
   }
@@ -119,17 +118,17 @@ static void layer_update_proc(Layer * layer, GContext * ctx){
   //Connection settings
   // Prepare to draw
   // Update connection toggle
-  onreconnection(settings.BTOn, connection_service_peek_pebble_app_connection());
+  onreconnection(BTOn, connection_service_peek_pebble_app_connection());
   bluetooth_callback(connection_service_peek_pebble_app_connection());
-  char TempToDraw[80];
+  char TempToDraw[6];
   char LocToDraw[20];
-  char CondToDraw[80];
-  if (!settings.BTOn){
+  char CondToDraw[20];
+  if (!BTOn){
     snprintf(TempToDraw, sizeof(TempToDraw), " ");
     snprintf(LocToDraw, sizeof(LocToDraw), " ");
     snprintf(CondToDraw, sizeof(CondToDraw), "Bluetooth Disc");
   }
-  else if (!settings.GPSOn){
+  else if (!GPSOn){
     snprintf(TempToDraw, sizeof(TempToDraw), " ");
     snprintf(LocToDraw, sizeof(LocToDraw), " ");
     snprintf(CondToDraw, sizeof(CondToDraw), "Weather NA");    
@@ -246,11 +245,11 @@ static void prv_inbox_received_handler(DictionaryIterator * iter, void * context
   //Hour Sunrise and Sunset
   Tuple * sunrise_t = dict_find(iter, MESSAGE_KEY_HourSunrise);
   if (sunrise_t){
-    settings.HourSunrise = (int) sunrise_t -> value -> int32;
+    HourSunrise = (int) sunrise_t -> value -> int32;
   }
   Tuple * sunset_t = dict_find(iter, MESSAGE_KEY_HourSunset);
   if (sunset_t){
-    settings.HourSunset = (int) sunset_t -> value -> int32;
+    HourSunset = (int) sunset_t -> value -> int32;
   }
   // Location
   Tuple * neigh_t = dict_find(iter, MESSAGE_KEY_NameLocation);
@@ -258,13 +257,14 @@ static void prv_inbox_received_handler(DictionaryIterator * iter, void * context
     snprintf(citistring, sizeof(citistring), "%s", neigh_t -> value -> cstring);
   }
   //Control of data gathered for http
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "After loop %d temp is %s Cond is %s and City is %s Sunrise is %d Sunset is %d", s_loop, tempstring, condstring, citistring, settings.HourSunrise, settings.HourSunset);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "After loop %d temp is %s Cond is %s and City is %s", s_loop, tempstring, condstring, citistring);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Sunrise is %d Sunset is %d", HourSunrise,HourSunset);
   if (strcmp(tempstring, "") != 0 && strcmp(condstring, "") != 0 && strcmp(citistring, "")){
     APP_LOG(APP_LOG_LEVEL_DEBUG, "GPS fully working at loop %d", s_loop);
-    settings.GPSOn = true;
+    GPSOn = true;
   } else{
     APP_LOG(APP_LOG_LEVEL_DEBUG, "Missing info at loop %d, GPS false", s_loop);
-    settings.GPSOn = false;
+    GPSOn = false;
   }
   //End data gathered
   // Get display handlers
@@ -299,6 +299,7 @@ static void window_unload(Window * window){
   window_destroy(s_window);
   fonts_unload_custom_font(FontHour);
   fonts_unload_custom_font(FontComp);
+  fonts_unload_custom_font(FontDate);
 }
 void main_window_push(){
   s_window = window_create();
@@ -328,16 +329,16 @@ static void tick_handler(struct tm * time_now, TimeUnits changed){
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Countdown to update %d", s_countdown);
   // Evaluate if is day or night
   int nowthehouris = s_hours * 100 + s_minutes;
-  if (settings.HourSunrise <= nowthehouris && nowthehouris <= settings.HourSunset){
-    settings.IsNightNow = false;
+  if (HourSunrise <= nowthehouris && nowthehouris <= HourSunset){
+    IsNightNow = false;
   } else{
-    settings.IsNightNow = true;
+    IsNightNow = true;
   }
   // Extra catch on sunrise and sunset
-  if (nowthehouris == settings.HourSunrise || nowthehouris == settings.HourSunset){
+  if (nowthehouris == HourSunrise || nowthehouris == HourSunset){
     s_countdown = 1;
   }
-  if (settings.GPSOn && settings.NightTheme){
+  if (GPSOn && settings.NightTheme){
     //Extra catch around 1159 to gather information of today
     if (nowthehouris == 1159 && s_countdown > 5){
       s_countdown = 1;
@@ -351,7 +352,7 @@ static void tick_handler(struct tm * time_now, TimeUnits changed){
       request_watchjs();    
   }
   //If GPS was off request weather every 15 minutes
-  if (!settings.GPSOn){
+  if (!GPSOn){
       if (settings.UpSlider > 15){
         if (s_countdown % 15 == 0){
           APP_LOG(APP_LOG_LEVEL_DEBUG, "Attempt to request GPS on %d", time_now -> tm_min);
@@ -378,7 +379,7 @@ static void init(){
   s_weekday=t->tm_wday;
   //Register and open
   app_message_register_inbox_received(prv_inbox_received_handler);
-  app_message_open(512, 512);
+  app_message_open(256, 256);
   // Load Fonts
   FontHour = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DIG_40));
   FontDate = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_DIGITAL_25));

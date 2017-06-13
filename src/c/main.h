@@ -13,14 +13,8 @@ typedef struct ClaySettings {
   GColor FrameColorN;
   GColor Text1ColorN;
   GColor Text2ColorN;  
-  bool WeatherUnit;
   int WeatherCond;
   int UpSlider;
-  int HourSunrise;
-  int HourSunset;
   char* WeatherTemp;
-  bool BTOn;
-  bool GPSOn;
   bool NightTheme;
-  bool IsNightNow;
 } __attribute__((__packed__)) ClaySettings;
