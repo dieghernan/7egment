@@ -144,8 +144,7 @@ module.exports = [
             "defaultValue": "",
             "label": "pmkey.xyz PIN",
             "attributes": {
-              "placeholder": "eg: 12345",
-              "type":"number"
+              "placeholder": "eg: 12345"
             }
           },
           {
@@ -165,7 +164,7 @@ module.exports = [
           },
           {
           "type": "heading",
-          "defaultValue": "version v1.2",
+          "defaultValue": "version v1.3",
           "size":6
           },
           {

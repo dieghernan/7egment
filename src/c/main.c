@@ -105,7 +105,7 @@ static void layer_update_proc(Layer * layer, GContext * ctx){
   snprintf(battperc, sizeof(battperc), "%d", battery_level);
   strcat(battperc, "%");
   // Draw AM PM 24H
-  char ampm[3];
+  char ampm[5];
   if (clock_is_24h_style()){
     snprintf(ampm, sizeof(ampm), "24H");
   }
