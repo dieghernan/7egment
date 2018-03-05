@@ -4,6 +4,8 @@
 
 #### [Download from Pebble Appstore](https://apps.getpebble.com/applications/591ead370dfc32aacf000204)
 
+[![paypal](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/dieghernan/0.99)
+
 # Features
 * Autodetection of 12h/24h based on your watch settings
 * Internationalization: Autotranslating of weekday supported for:
